@@ -12,4 +12,4 @@ TO DO:
 1. use redis sentinel
 2. allow copying of ssl certificates for HTTPS support
 
-The better approach is to use a [Kubernetes-based deployment] https://github.com/DrMegavolt/k8s-redis-ha/blob/master/example/express-gateway.yml , but this is for a quick setup in a dev environment.
+The better approach is to use a [Kubernetes-based deployment](https://github.com/DrMegavolt/k8s-redis-ha/blob/master/example/express-gateway.yml) , but this is for a quick setup in a dev environment.
