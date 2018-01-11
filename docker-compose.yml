@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+    eg_redis:
+        image: redis
+        hostname: redis
+        container_name: redisdocker
+        ports:
+            - "6379:6379"
+        networks:
+            gateway:
+                aliases:
+                    - redis
+    express_gateway:
+        build: .
+        container_name: egdocker
+        ports:
+            - "8080:8080"
+            - "8443:8443"
+            - "9876:9876"
+        volumes:
+            - ./system.config.yml:/usr/src/app/config/system.config.yml
+            - ./gateway.config.yml:/usr/src/app/config/gateway.config.yml
+        networks:
+            - gateway
+
+networks:
+    gateway:
