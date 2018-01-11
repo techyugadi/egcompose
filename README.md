@@ -9,5 +9,7 @@ This will start an Express Gateway container and a linked Redis container. Commo
 The docker compose script overlays the gateway and system config files with example configuration files in the same directory. For your usage replace these files with you own. For example gateway config includes an API endpoint to find out the current IP address of the client.
 
 TO DO:
-i. use redis sentinel
-ii. allow copying of ssl certificates for HTTPS support
+1. use redis sentinel
+2. allow copying of ssl certificates for HTTPS support
+
+The better approach is to use a [Kubernetes-based deployment] https://github.com/DrMegavolt/k8s-redis-ha/blob/master/example/express-gateway.yml , but this is for a quick setup in a dev environment.
