@@ -1,0 +1,74 @@
+version: '2'
+
+services:
+    master:
+        image: redis
+        container_name: redismaster
+        networks:
+            gateway:
+ 
+    slave1:
+        image: redis
+        container_name: redisslave1
+        command: redis-server --slaveof redis-master 6379
+        links:
+            - master:redis-master 
+        networks:
+            gateway:
+     
+    slave2:
+        image: redis
+        container_name: redisslave2
+        command: redis-server --slaveof redis-master 6379
+        links:
+            - master:redis-master 
+        networks:
+            gateway:
+
+    sentinel1:
+        build: sentinel
+        container_name: redissentinel1
+        environment:
+            - SENTINEL_DOWN_AFTER=5000
+            - SENTINEL_FAILOVER=5000
+        ports:
+            - "1379:26379"
+        links:
+            - master:redis-master
+            - slave1
+            - slave2
+        networks:
+            gateway:
+
+    sentinel2:
+        build: sentinel
+        container_name: redissentinel2
+        environment:
+            - SENTINEL_DOWN_AFTER=5000
+            - SENTINEL_FAILOVER=5000
+        ports:
+            - "2379:26379"
+        links:
+            - master:redis-master
+            - slave1
+            - slave2
+        networks:
+            gateway:
+
+    express_gateway:
+        build: .
+        container_name: egdocker
+        ports:
+            - "8080:8080"
+            - "8443:8443"
+            - "9876:9876"
+        volumes:
+            - ./system.config.yml:/usr/src/app/config/system.config.yml
+            - ./gateway.config.yml:/usr/src/app/config/gateway.config.yml
+            - ./ssl.key:/usr/local/share/ca-certificates/ssl.key
+            - ./ssl.crt:/usr/local/share/ca-certificates/ssl.crt
+        networks:
+            - gateway
+
+networks:
+    gateway:
