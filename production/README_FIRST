@@ -1,0 +1,6 @@
+Before running docker-compose up -d from this directory, please copy your SSL key and certificate to this directory.
+
+The SSL key must be named ssl.key .
+The SSL certificate must be named ssl.crt .
+
+If required rename the key / certificate files you have to reflect the filenames above.
