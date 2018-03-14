@@ -18,7 +18,7 @@ Then run: docker-compose up -d
 This sets up Express Gateway with Redis sentinel and HTTPS support. 
 
 For detailed steps, please refer to:
-[One-Step Dev Setup for Express Gateway Using egcompose](http://techyugadi.com/express_gateway_egcompose_1.html)
+[One-Step Dev Setup for Express Gateway Using egcompose](http://techyugadi.com/express_gateway_egcompose_1.html)  
 [Express Gateway Set-up Using egcompose With Redis Sentinel and HTTPS](http://techyugadi.com/express_gateway_egcompose_2.html)
 
 The better approach is to use a [Kubernetes-based deployment](https://github.com/DrMegavolt/k8s-redis-ha/blob/master/example/express-gateway.yml) , but this is for a quick setup in a dev environment.
